@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Neon Jump: Overdrive</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="notification-toast" class="toast-hidden"></div>
+
+    <audio id="bgMusic" loop>
+        <source src="musica.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="ui">
+        <div id="score">0</div>
+        <div id="highScoreDisplay">RECORD: 0</div>
+    </div>
+
+    <div id="homeMenu" class="overlay">
+        <h1 class="glow-text">NEON JUMP</h1>
+        <button onclick="startGame()">AVVIA MOTORE</button>
+        <button onclick="openShop()" style="border-color: #0f0; color: #0f0;">CYBER NEGOZIO</button>
+        <button onclick="showHighScore()" style="border-color: #ff0; color: #ff0;">ARCHIVIO RECORD</button>
+        <button onclick="openSettings()">SISTEMA</button>
+        
+        <div style="display: flex; gap: 10px; margin-top: 10px;">
+            <button onclick="showAuthor()" style="font-size: 11px; border-color: #aaa; color: #aaa;">AUTORE</button>
+            <button onclick="openNews()" style="font-size: 11px; border-color: #ff0055; color: #ff0055;">AVVISI</button>
+        </div>
+    </div>
+
+    <div id="newsMenu" class="overlay" style="display:none; border-color: #ff0055;">
+        <h2 style="color: #ff0055;">LOG AGGIORNAMENTI</h2>
+        <p style="font-size: 14px; line-height: 1.5; color: #fff; text-align: left; margin: 20px 0;">
+            Nella prossima versione si cambierà musica, ci saranno più skin e tantissime nuove funzionalità!
+        </p>
+        <button onclick="closeNews()" style="border-color: #ff0055; color: #ff0055;">RICEVUTO</button>
+    </div>
+
+    <div id="shopMenu" class="overlay" style="display:none; border-color: #0f0;">
+        <h1 style="color: #0f0;">PERSONALIZZAZIONE</h1>
+        <div id="currencyDisplay" style="color: #ff0; margin-bottom: 15px; font-weight: bold;">BIT: 0</div>
+        <div id="skinContainer" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px;"></div>
+        <button onclick="closeShop()">TORNA ALL'HUB</button>
+    </div>
+
+    <div id="recordMenu" class="overlay" style="display:none; border-color: #ff0;">
+        <h1 style="color: #ff0;">RECORD ATTUALE</h1>
+        <div id="recordValue" style="font-size: 3rem; color: #ff0; margin: 20px 0;">0</div>
+        <button onclick="closeRecord()" style="border-color: #ff0; color: #ff0;">CHIUDI</button>
+    </div>
+
+    <div id="settingsMenu" class="overlay" style="display:none;">
+        <h1>SISTEMA</h1>
+        <label style="color: #0ff;">SIMULAZIONE GRAVITÀ:</label>
+        <select id="difficulty" onchange="applySettings()">
+            <option value="0.3">LUNARE (FACILE)</option>
+            <option value="0.5" selected>NEON (NORMALE)</option>
+            <option value="0.8">TERRESTRE (DIFFICILE)</option>
+        </select>
+        <button onclick="closeSettings()" style="margin-top:20px;">SALVA</button>
+    </div>
+
+    <div id="gameOverMenu" class="overlay" style="display:none;">
+        <h2 style="color: #ff0055;">CRASH!</h2>
+        <div id="finalScore" style="color: #fff; margin-bottom: 20px;">PUNTEGGIO: 0</div>
+        <button onclick="resetGame()">RIAVVIA</button>
+        <button onclick="backToHome()">HUB</button>
+    </div>
+
+    <canvas id="gameCanvas"></canvas>
+    <script src="script.js"></script>
+</body>
+</html>
